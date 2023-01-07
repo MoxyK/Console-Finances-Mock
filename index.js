@@ -1,4 +1,4 @@
-var finances = [
+let finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
 ['Mar-2010', 322013],
@@ -86,3 +86,65 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+// Total number of months over entire period
+let totalMonths = finances.length; 
+// console.log(totalMonths)
+
+// calculate NET [LET]total of profit/loss over entire period
+let netProfits = 0;
+for(let i = 0; i < finances.length; i++){
+    netProfits += finances.length;[i][1];
+}
+// What the total [LET]change in profits are from month to month and then find the average
+let totalChange = 0;
+
+for (let i= 1; i < finances.length; i++){
+    
+    let currentProfit = finances[i][1];
+    let previousProfit = finances[i-1][1];
+    let changeInProfit = currentProfit - previousProfit;
+
+        totalChange += changeInProfit;
+}
+// console.log(totalChange)
+
+// The [LET]average of the changes in Profit/Losses over the entire period
+let averageChange = totalChange / (finances.length -1);
+// console.log(averageChange)
+
+// The greatest increase and decrease in [LET]profits (date and amount) over the entire period
+
+// Initialise Greatest Changes.
+let greatestIncreaseDate = '';
+let greatestIncreaseAmount = 0;
+let greatestDecreaseDate = '';
+let greatestDecreaseAmount = 0;
+
+for (i = 1; i < finances.length; i++){
+    let currentProfit = finances[i][1];
+    let previousProfit = finances[i-1][1];
+    let changeInProfit = currentProfit - previousProfit;
+
+    if (changeInProfit > greatestIncreaseAmount){
+        greatestIncreaseDate = finances[i - 1][0];
+        greatestIncreaseAmount = changeInProfit;
+    }
+    if (changeInProfit < greatestDecreaseAmount){
+        greatestDecreaseDate = finances[i - 1][0];
+        greatestDecreaseAmount = changeInProfit;
+    }
+}
+// console.log(greatestIncreaseDate);
+// console.log(greatestIncreaseAmount);
+// console.log(greatestDecreaseDate);
+// console.log(greatestDecreaseAmount);
+
+// Final code should print the [LET]analysis to the console
+console.log('Financial Analysis');
+console.log('.');
+console.log('Total Months: ' + totalMonths +'');
+console.log('Net Profit: ' + netProfits +'');
+console.log('Average Change: ' + averageChange +'');
+console.log('Greatest Profit Increase: ' + greatestIncreaseDate + ', At: ' + greatestIncreaseAmount + '')
+console.log('Greatest Profit Decrease: ' + greatestDecreaseDate + ', At: ' + greatestDecreaseAmount + '')
